@@ -1,0 +1,88 @@
+html {
+	scroll-behavior: smooth;
+}
+
+.gradient-text {
+	background: linear-gradient(to right, #0087cd, #36a852);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.bg-pattern {
+	background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+	background-size: 20px 20px;
+}
+
+.triangle-down {
+	width: 0;
+	height: 0;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-top: 20px solid #36a852;
+	margin: 0 auto;
+}
+
+/* Safety fallback in case the Tailwind Play CDN build in use predates
+   core line-clamp support (v3.3+). Harmless no-op once utilities load. */
+.line-clamp-2 {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+}
+
+/* Scroll offset so anchor jumps land below the fixed header instead of
+   tucking the section title underneath it. */
+#reasons,
+#equipment,
+#faq,
+#company,
+#contact {
+	scroll-margin-top: 5rem;
+}
+
+/* --- Responsive fixes not covered by the original CodePen markup --- */
+
+/* Company info table: collapse to a stacked key/value layout on narrow
+   screens instead of relying on horizontal scroll alone. */
+@media (max-width: 639px) {
+	#company table th,
+	#company table td {
+		display: block;
+		width: 100%;
+	}
+
+	#company table th {
+		padding-bottom: 0.5rem;
+	}
+
+	#company table td {
+		padding-top: 0.5rem;
+	}
+}
+
+/* Prevent the emphasized inline label in the "worries" callout from
+   overflowing narrow viewports. */
+@media (max-width: 400px) {
+	#reasons ~ * .text-yellow-300,
+	.triangle-down + div .text-yellow-300 {
+		display: inline-block;
+		margin: 0.25rem 0 0;
+	}
+}
+
+/* Minimal article typography for single-news / page content, since the
+   Tailwind Typography plugin classes ("prose") are loaded from the CDN
+   but keeping local fallback rules avoids a flash of unstyled content
+   if that request is ever blocked. */
+.prose :where(p) {
+	margin-top: 1em;
+	margin-bottom: 1em;
+	line-height: 1.75;
+}
+
+.prose :where(h1, h2, h3) {
+	font-weight: 700;
+	margin-top: 1.5em;
+	margin-bottom: 0.5em;
+}
