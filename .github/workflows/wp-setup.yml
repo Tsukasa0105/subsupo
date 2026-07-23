@@ -5,9 +5,12 @@ on:
 
 jobs:
   setup:
-    name: Inspect site and create required pages
+    name: Inspect site, create required pages, sync news posts
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Query WordPress REST API
         env:
           WP_URL: ${{ secrets.WP_URL }}
@@ -42,3 +45,57 @@ jobs:
           else
             echo "Privacy policy page already exists, skipping creation."
           fi
+
+          echo
+          echo "## Existing news posts (before sync)"
+          curl -sS -u "$AUTH" "$BASE/wp/v2/news?per_page=100&status=publish,draft&_fields=id,slug,title,status" \
+            | jq -r '.[] | "#" + (.id|tostring) + "  " + .slug + "  " + .title.rendered'
+
+          echo
+          echo "## Ensuring news_category terms exist"
+          get_or_create_term() {
+            local name="$1"
+            local id
+            id=$(curl -sS -u "$AUTH" -G "$BASE/wp/v2/news_category" --data-urlencode "search=${name}" | jq -r --arg n "$name" '[.[] | select(.name == $n)][0].id // empty')
+            if [ -z "$id" ]; then
+              id=$(curl -sS -u "$AUTH" -X POST "$BASE/wp/v2/news_category" -H "Content-Type: application/json" -d "{\"name\": \"${name}\"}" | jq -r '.id')
+            fi
+            echo "$id"
+          }
+          TERM_HOJOKIN=$(get_or_create_term "補助金情報")
+          TERM_OSHIRASE=$(get_or_create_term "お知らせ")
+          echo "補助金情報 term id: $TERM_HOJOKIN"
+          echo "お知らせ term id: $TERM_OSHIRASE"
+
+          echo
+          echo "## Syncing news posts to match the current copy deck"
+          jq -c '.[]' .github/workflows/data/news-items.json | while read -r item; do
+            SLUG=$(echo "$item" | jq -r '.slug')
+            TITLE=$(echo "$item" | jq -r '.title')
+            CONTENT=$(echo "$item" | jq -r '.content')
+            DATE=$(echo "$item" | jq -r '.date')
+            CATEGORY=$(echo "$item" | jq -r '.category')
+
+            if [ "$CATEGORY" = "補助金情報" ]; then
+              TERM_ID="$TERM_HOJOKIN"
+            else
+              TERM_ID="$TERM_OSHIRASE"
+            fi
+
+            PAYLOAD=$(jq -n --arg title "$TITLE" --arg slug "$SLUG" --arg content "$CONTENT" --arg date "$DATE" --argjson term "$TERM_ID" \
+              '{title: $title, slug: $slug, content: $content, date: $date, status: "publish", news_category: [$term]}')
+
+            EXISTING_ID=$(curl -sS -u "$AUTH" "$BASE/wp/v2/news?slug=${SLUG}" | jq -r '.[0].id // empty')
+            if [ -z "$EXISTING_ID" ]; then
+              curl -sS -u "$AUTH" -X POST "$BASE/wp/v2/news" -H "Content-Type: application/json" -d "$PAYLOAD" \
+                | jq -r '"Created: #" + (.id|tostring) + "  " + .slug'
+            else
+              curl -sS -u "$AUTH" -X POST "$BASE/wp/v2/news/${EXISTING_ID}" -H "Content-Type: application/json" -d "$PAYLOAD" \
+                | jq -r '"Updated: #" + (.id|tostring) + "  " + .slug'
+            fi
+          done
+
+          echo
+          echo "## News posts after sync (review any slugs NOT in the list above — they are old/unexpected posts left untouched)"
+          curl -sS -u "$AUTH" "$BASE/wp/v2/news?per_page=100&status=publish,draft&_fields=id,slug,title,status" \
+            | jq -r '.[] | "#" + (.id|tostring) + "  " + .slug + "  " + .title.rendered'
