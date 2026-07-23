@@ -63,3 +63,4 @@ require get_template_directory() . '/inc/news-post-type.php';
  */
 require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/contact-form.php';
+require get_template_directory() . '/inc/setup.php';

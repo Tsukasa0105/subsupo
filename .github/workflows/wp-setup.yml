@@ -1,0 +1,44 @@
+name: WordPress initial setup
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  setup:
+    name: Inspect site and create required pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Query WordPress REST API
+        env:
+          WP_URL: ${{ secrets.WP_URL }}
+          WP_USERNAME: ${{ secrets.WP_USERNAME }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+        run: |
+          set -euo pipefail
+          AUTH="${WP_USERNAME}:${WP_APP_PASSWORD}"
+          BASE="${WP_URL%/}/wp-json"
+
+          echo "## Active plugins"
+          curl -sS -u "$AUTH" "$BASE/wp/v2/plugins" \
+            | jq -r 'if type=="array" then (.[] | select(.status=="active") | .plugin + "  —  " + .name) else "(could not list plugins: " + (.message // tostring) + ")" end'
+
+          echo
+          echo "## Registered post types (confirms the subsup theme is active)"
+          curl -sS -u "$AUTH" "$BASE/wp/v2/types" | jq -r 'keys[]'
+
+          echo
+          echo "## Existing pages"
+          curl -sS -u "$AUTH" "$BASE/wp/v2/pages?per_page=100&status=publish,draft,private" \
+            | jq -r '.[] | .slug + "  (" + .status + ")  #" + (.id|tostring)'
+
+          echo
+          echo "## Ensuring the Privacy Policy page exists"
+          EXISTING_COUNT=$(curl -sS -u "$AUTH" "$BASE/wp/v2/pages?slug=privacy-policy" | jq 'length')
+          if [ "$EXISTING_COUNT" = "0" ]; then
+            RESPONSE=$(curl -sS -u "$AUTH" -X POST "$BASE/wp/v2/pages" \
+              -H "Content-Type: application/json" \
+              --data-binary @.github/workflows/data/privacy-policy-page.json)
+            echo "$RESPONSE" | jq -r '"Created page id: " + (.id|tostring) + "  link: " + .link'
+          else
+            echo "Privacy policy page already exists, skipping creation."
+          fi
