@@ -6,8 +6,9 @@
 			<div>
 				<h3 class="text-2xl font-bold text-primary mb-4 tracking-wider">株式会社サブサポ</h3>
 				<p class="text-gray-400 text-sm mb-4">
-					〒465-0000<br>
-					愛知県名古屋市名東区<br>
+					〒453-0811<br>
+					愛知県名古屋市中村区太閤通8丁目30<br>
+					ARK中村公園5階D<br>
 					TEL: 080-4346-8593
 				</p>
 			</div>

@@ -17,12 +17,12 @@ $contact_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['c
 						相談実績500件以上！採択率90%超
 					</span>
 					<h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl leading-tight">
-						<span class="block mb-2">面倒な省エネ補助金の</span>
-						<span class="block text-primary">申請を丸ごとサポート！</span>
-						<span class="block text-2xl sm:text-3xl mt-4 text-gray-700">設備投資のコストを大幅削減しませんか？</span>
+						<span class="block mb-2">面倒な省エネ補助金の申請を</span>
+						<span class="block text-primary">補助金のプロが伴走支援！</span>
+						<span class="block text-2xl sm:text-3xl mt-4 text-gray-700">設備投資（イニシャルコスト）を大幅削減し、高効率な設備でランニングコストも抑えませんか？</span>
 					</h1>
 					<p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-						補助金のプロが、最適な設備選定から複雑な申請書類の作成、採択後の実績報告までトータルでコンサルティングいたします。
+						省エネ・省CO2にかかる計画に対して最適な補助金の選定、相談・アドバイス等、申請者様が補助事業を円滑に遂行できるよう弊社がトータルでサポートいたします。
 					</p>
 					<div class="mt-8 sm:mt-12 sm:flex sm:justify-center lg:justify-start">
 						<div class="rounded-md shadow">
@@ -95,7 +95,7 @@ $contact_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['c
 					<div class="flex-shrink-0 flex items-center justify-center h-8 w-8 rounded-full bg-red-100 text-red-500 mt-1">
 						<i class="fas fa-check"></i>
 					</div>
-					<p class="ml-4 text-lg text-gray-700 font-medium pt-1">電気代などのエネルギーコストが高騰して利益を圧迫している</p>
+					<p class="ml-4 text-lg text-gray-700 font-medium pt-1">電気・ガス代などのエネルギーコストが高騰して利益を圧迫している</p>
 				</li>
 				<li class="flex items-start">
 					<div class="flex-shrink-0 flex items-center justify-center h-8 w-8 rounded-full bg-red-100 text-red-500 mt-1">
@@ -107,7 +107,7 @@ $contact_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['c
 					<div class="flex-shrink-0 flex items-center justify-center h-8 w-8 rounded-full bg-red-100 text-red-500 mt-1">
 						<i class="fas fa-check"></i>
 					</div>
-					<p class="ml-4 text-lg text-gray-700 font-medium pt-1">「省エネ補助金」があるのは知っているが、自社が対象になるか分からない</p>
+					<p class="ml-4 text-lg text-gray-700 font-medium pt-1">どのような設備が対象になるのかわからない</p>
 				</li>
 				<li class="flex items-start">
 					<div class="flex-shrink-0 flex items-center justify-center h-8 w-8 rounded-full bg-red-100 text-red-500 mt-1">
@@ -121,7 +121,7 @@ $contact_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['c
 		<div class="mt-8">
 			<div class="triangle-down"></div>
 			<div class="bg-secondary text-white p-6 rounded-lg shadow-md mt-2">
-				<h3 class="text-2xl font-bold">そのお悩み、株式会社サブサポの<br class="sm:hidden"><span class="text-yellow-300 text-2xl sm:text-3xl mx-2">【補助金活用サポート】</span>で解決できます！</h3>
+				<h3 class="text-2xl font-bold">その悩み、サブサポの<br class="sm:hidden"><span class="text-yellow-300 text-2xl sm:text-3xl mx-2">【補助金活用サポート】</span>で解決できます</h3>
 			</div>
 		</div>
 	</div>
@@ -131,26 +131,13 @@ $contact_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['c
 	<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="text-center mb-12">
 			<h2 class="text-3xl font-bold text-gray-900">補助金活用の<span class="text-primary">大きなメリット</span></h2>
-			<p class="mt-4 text-lg text-gray-600">補助金を活用することで、実質的な負担を減らし、早期の投資回収が可能になります。</p>
+			<p class="mt-4 text-lg text-gray-600">補助金を活用することで、導入設備でかかる補助対象経費の最大2/3の補助が受けられます。</p>
 		</div>
 
 		<div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-4 lg:gap-12">
-			<div class="w-full md:w-5/12 bg-white rounded-xl shadow-lg p-6 border-t-8 border-gray-400 relative">
+			<div class="w-full md:w-5/12 bg-white rounded-xl shadow-lg p-4 border-t-8 border-gray-400 relative">
 				<div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-gray-500 text-white font-bold py-1 px-6 rounded-full">導入前</div>
-				<h4 class="text-center font-bold text-xl mb-4 mt-2">古い設備での高いランニングコスト</h4>
-				<div class="flex justify-center mb-4">
-					<i class="fas fa-industry text-6xl text-gray-400"></i>
-				</div>
-				<div class="space-y-3">
-					<div class="flex justify-between items-center bg-gray-100 p-3 rounded">
-						<span class="font-medium text-gray-600">設備投資額</span>
-						<span class="font-bold text-xl">0円</span>
-					</div>
-					<div class="flex justify-between items-center bg-red-50 p-3 rounded border border-red-100">
-						<span class="font-medium text-red-600">年間電気代</span>
-						<span class="font-bold text-xl text-red-600">大幅な負担増</span>
-					</div>
-				</div>
+				<img class="w-full h-auto rounded-lg mt-4" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/merit-before-without-subsidy.png' ); ?>" alt="補助金を活用しない場合：実質負担額7,700万円">
 			</div>
 
 			<div class="text-center hidden md:block">
@@ -161,23 +148,9 @@ $contact_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['c
 				<i class="fas fa-chevron-down text-4xl text-secondary"></i>
 			</div>
 
-			<div class="w-full md:w-5/12 bg-white rounded-xl shadow-lg p-6 border-t-8 border-secondary relative transform scale-105">
+			<div class="w-full md:w-5/12 bg-white rounded-xl shadow-lg p-4 border-t-8 border-secondary relative transform scale-105">
 				<div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-secondary text-white font-bold py-1 px-6 rounded-full shadow">導入後</div>
-				<h4 class="text-center font-bold text-xl mb-4 mt-2">新しい省エネ設備 ＋ 補助金</h4>
-				<div class="flex justify-center mb-4 space-x-4">
-					<i class="fas fa-solar-panel text-5xl text-primary"></i>
-					<i class="fas fa-leaf text-5xl text-secondary"></i>
-				</div>
-				<div class="space-y-3">
-					<div class="flex justify-between items-center bg-blue-50 p-3 rounded border border-blue-100">
-						<span class="font-medium text-primary">設備投資額</span>
-						<span class="font-bold text-lg"><span class="line-through text-gray-400 mr-2">100%</span> → 補助金で大幅減!</span>
-					</div>
-					<div class="flex justify-between items-center bg-green-50 p-3 rounded border border-green-100">
-						<span class="font-medium text-secondary">年間電気代</span>
-						<span class="font-bold text-xl text-secondary"><i class="fas fa-arrow-down mr-1"></i>大幅コスト削減</span>
-					</div>
-				</div>
+				<img class="w-full h-auto rounded-lg mt-4" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/merit-after-with-subsidy.png' ); ?>" alt="補助金を活用する場合（補助率1/2）：実質負担額4,700万円">
 			</div>
 		</div>
 	</div>
@@ -186,7 +159,7 @@ $contact_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['c
 <section id="reasons" class="py-16 bg-white">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="text-center mb-16">
-			<h2 class="text-3xl font-bold text-gray-900">株式会社サブサポが選ばれる<span class="text-primary text-4xl">4</span>つの理由</h2>
+			<h2 class="text-3xl font-bold text-gray-900">サブサポが選ばれる<span class="text-primary text-4xl">4</span>つの理由</h2>
 			<div class="w-24 h-1 bg-secondary mx-auto mt-4"></div>
 		</div>
 
@@ -195,9 +168,9 @@ $contact_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['c
 				<div class="w-20 h-20 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-6">
 					<i class="fas fa-hands-helping text-4xl text-primary"></i>
 				</div>
-				<h3 class="text-xl font-bold mb-4 text-gray-800">申請から完了報告まで<br>トータルサポート</h3>
+				<h3 class="text-xl font-bold mb-4 text-gray-800">設備投資計画から<br>事業完了までトータルサポート</h3>
 				<p class="text-gray-600 text-left">
-					面倒な書類作成や行政とのやり取り、手続きをすべて丸投げ可能です。お客様は貴重な時間を割くことなく、本業に専念していただけます。
+					どの補助金を申請するかのコンサルから申請書類の準備、申請、途中報告、成果報告までワンストップで一貫して伴走支援を実施することで、申請者様の社内リソースを極力削らずに補助金の活用が円滑に遂行できます。
 				</p>
 			</div>
 
@@ -205,9 +178,9 @@ $contact_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['c
 				<div class="w-20 h-20 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-6">
 					<i class="fas fa-chart-line text-4xl text-secondary"></i>
 				</div>
-				<h3 class="text-xl font-bold mb-4 text-gray-800">最新動向を熟知した<br>専門家による提案</h3>
+				<h3 class="text-xl font-bold mb-4 text-gray-800">弊社独自のノウハウを<br>活用した省エネ補助金の提案</h3>
 				<p class="text-gray-600 text-left">
-					最新の補助金情報に基づき、お客様の事業状況に最適な補助金(省エネ、事業再構築など)を選定。採択率を極限まで高める説得力のある事業計画を作成します。
+					独自のノウハウに基づき、申請者様の事業状況に最適な補助事業を選定。採択率を極限まで高めた内容の申請書へと導きます。
 				</p>
 			</div>
 
@@ -216,9 +189,9 @@ $contact_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['c
 				<div class="w-20 h-20 mx-auto bg-orange-100 rounded-full flex items-center justify-center mb-6">
 					<i class="fas fa-yen-sign text-4xl text-accent"></i>
 				</div>
-				<h3 class="text-xl font-bold mb-4 text-gray-800">分かりやすく<br>安心の料金体系</h3>
+				<h3 class="text-xl font-bold mb-4 text-gray-800">完全成功報酬型</h3>
 				<p class="text-gray-600 text-left">
-					着手金不要の完全成功報酬型など、リスクを抑えた明確な料金体系をご提示します。後から追加費用が発生するようなことは一切ありません。
+					着手金不要の完全成功報酬のため、事前料金は発生いたしません。万が一、補助事業の採択が取れなかった場合、費用は掛からないため、安心してご依頼が可能です。
 				</p>
 			</div>
 
@@ -227,9 +200,9 @@ $contact_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['c
 				<div class="w-20 h-20 mx-auto bg-teal-100 rounded-full flex items-center justify-center mb-6">
 					<i class="fas fa-globe-asia text-4xl text-teal-600"></i>
 				</div>
-				<h3 class="text-xl font-bold mb-4 text-gray-800">全国対応＆<br>スピーディーな対応力</h3>
+				<h3 class="text-xl font-bold mb-4 text-gray-800">全国対応＆<br>申請者様に寄り添う対応</h3>
 				<p class="text-gray-600 text-left">
-					オンライン面談を活用し、北海道から沖縄まで全国どこでも対応可能。お問い合わせには原則24時間以内にご返信し、補助金の公募締切までスピード感をもってご支援いたします。
+					現地訪問、オンライン面談を活用し、北海道から沖縄まで全国どこでも対応可能。申請者様の不安を解決しながら補助事業の完了まで安心感をもって支援致します。
 				</p>
 			</div>
 		</div>
@@ -239,40 +212,37 @@ $contact_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['c
 <section id="equipment" class="py-16 bg-gray-800 text-white">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="text-center mb-12">
-			<h2 class="text-3xl font-bold">対象となる主な設備・補助金</h2>
-			<p class="mt-4 text-gray-400">以下のような設備の導入・更新で補助金が活用できます。</p>
+			<h2 class="text-3xl font-bold">補助対象となる主な設備</h2>
+			<p class="mt-4 text-gray-400">以下のような設備の更新で補助金が活用できます。<br>※上記以外も対象になる場合がございます。まずはお気軽にご相談下さい。</p>
 		</div>
 
-		<div class="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6 mb-12">
+		<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-12">
 			<div class="bg-gray-700 p-6 rounded-lg text-center border border-gray-600 hover:border-primary transition">
 				<i class="fas fa-wind text-4xl text-primary mb-3"></i>
-				<h4 class="font-bold">空調設備<br><span class="text-xs font-normal text-gray-300">(業務用エアコン等)</span></h4>
-			</div>
-			<div class="bg-gray-700 p-6 rounded-lg text-center border border-gray-600 hover:border-primary transition">
-				<i class="far fa-lightbulb text-4xl text-yellow-400 mb-3"></i>
-				<h4 class="font-bold">照明設備<br><span class="text-xs font-normal text-gray-300">(LED化等)</span></h4>
+				<h4 class="font-bold">空調設備</h4>
 			</div>
 			<div class="bg-gray-700 p-6 rounded-lg text-center border border-gray-600 hover:border-primary transition">
 				<i class="fas fa-hot-tub text-4xl text-red-400 mb-3"></i>
-				<h4 class="font-bold">給湯設備<br><span class="text-xs font-normal text-gray-300">(高効率ボイラー等)</span></h4>
+				<h4 class="font-bold">給湯設備</h4>
 			</div>
 			<div class="bg-gray-700 p-6 rounded-lg text-center border border-gray-600 hover:border-primary transition">
-				<i class="fas fa-solar-panel text-4xl text-blue-300 mb-3"></i>
-				<h4 class="font-bold">太陽光・蓄電池<br><span class="text-xs font-normal text-gray-300">(自家消費型)</span></h4>
-			</div>
-			<div class="bg-gray-700 p-6 rounded-lg text-center border border-gray-600 hover:border-primary transition col-span-2 md:col-span-1">
 				<i class="fas fa-cogs text-4xl text-gray-300 mb-3"></i>
-				<h4 class="font-bold">生産・工作機械<br><span class="text-xs font-normal text-gray-300">(高効率機器)</span></h4>
+				<h4 class="font-bold">生産設備</h4>
+			</div>
+			<div class="bg-gray-700 p-6 rounded-lg text-center border border-gray-600 hover:border-primary transition">
+				<i class="fas fa-tools text-4xl text-blue-300 mb-3"></i>
+				<h4 class="font-bold">工作機械</h4>
 			</div>
 		</div>
 
 		<div class="bg-gray-900 rounded-lg p-8 border border-gray-700">
-			<h3 class="text-xl font-bold mb-4 text-center border-b border-gray-700 pb-4"><i class="fas fa-file-invoice-dollar mr-2 text-secondary"></i> 活用できる主な補助金</h3>
+			<h3 class="text-xl font-bold mb-4 text-center border-b border-gray-700 pb-4"><i class="fas fa-file-invoice-dollar mr-2 text-secondary"></i> 主な取り扱い補助事業</h3>
 			<ul class="grid md:grid-cols-3 gap-4 text-center">
-				<li class="bg-gray-800 py-3 px-4 rounded">省エネ補助金<br><span class="text-xs text-gray-400">(先進的省エネルギー投資促進等)</span></li>
-				<li class="bg-gray-800 py-3 px-4 rounded">事業再構築補助金</li>
-				<li class="bg-gray-800 py-3 px-4 rounded">ものづくり補助金</li>
+				<li class="bg-gray-800 py-3 px-4 rounded">経産省<br>省エネ・非化石転換補助金</li>
+				<li class="bg-gray-800 py-3 px-4 rounded">環境省<br>民間建築物等における省CO2改修支援事業</li>
+				<li class="bg-gray-800 py-3 px-4 rounded">環境省<br>テナントビルの省CO2改修支援事業</li>
 			</ul>
+			<p class="text-center text-gray-400 text-sm mt-6">その他にも様々な省エネ補助金がございます。申請者様にあった最適な補助金のご提案をさせて頂きます。</p>
 		</div>
 	</div>
 </section>
@@ -286,31 +256,61 @@ $contact_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['c
 		<div class="space-y-4">
 			<div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
 				<button type="button" class="js-faq-toggle w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none" aria-expanded="false" aria-controls="faq1">
-					<span class="font-bold text-lg text-gray-800"><span class="text-primary mr-2">Q.</span>相談には料金がかかりますか？</span>
+					<span class="font-bold text-lg text-gray-800"><span class="text-primary mr-2">Q.</span>相談に料金はかかりますか？</span>
 					<i class="js-faq-icon fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
 				</button>
 				<div id="faq1" class="hidden px-6 pb-4 text-gray-600 border-t border-gray-100 pt-4">
-					<p><span class="text-secondary font-bold mr-2">A.</span>初回のご相談は完全無料です。自社が補助金の対象になるかどうかの簡易診断も無料で行っておりますので、まずはお気軽にお問い合わせください。</p>
+					<p><span class="text-secondary font-bold mr-2">A.</span>ご相談は無料でお伺いしております。</p>
 				</div>
 			</div>
 
 			<div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
 				<button type="button" class="js-faq-toggle w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none" aria-expanded="false" aria-controls="faq2">
-					<span class="font-bold text-lg text-gray-800"><span class="text-primary mr-2">Q.</span>地方の企業ですが対応可能ですか？</span>
+					<span class="font-bold text-lg text-gray-800"><span class="text-primary mr-2">Q.</span>どこの地域でも対応可能ですか？</span>
 					<i class="js-faq-icon fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
 				</button>
 				<div id="faq2" class="hidden px-6 pb-4 text-gray-600 border-t border-gray-100 pt-4">
-					<p><span class="text-secondary font-bold mr-2">A.</span>全国対応可能です。ZoomなどのWeb会議システムを活用したオンラインでの面談を実施しておりますので、遠方のお客様でもスムーズにサポートさせていただきます。</p>
+					<p><span class="text-secondary font-bold mr-2">A.</span>全国対応可能です。現地訪問やWeb会議システムを活用したオンラインでの面談を実施しております。</p>
 				</div>
 			</div>
 
 			<div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
 				<button type="button" class="js-faq-toggle w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none" aria-expanded="false" aria-controls="faq3">
-					<span class="font-bold text-lg text-gray-800"><span class="text-primary mr-2">Q.</span>確実に補助金をもらえますか？</span>
+					<span class="font-bold text-lg text-gray-800"><span class="text-primary mr-2">Q.</span>何から準備すればよいか分からないのですが、大丈夫ですか？</span>
 					<i class="js-faq-icon fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
 				</button>
 				<div id="faq3" class="hidden px-6 pb-4 text-gray-600 border-t border-gray-100 pt-4">
-					<p><span class="text-secondary font-bold mr-2">A.</span>補助金は国や自治体の審査があるため、100%の採択を保証するものではありません。しかし、当社の豊富な実績とノウハウに基づき、審査員に評価される事業計画書を作成し、最大限採択率を高めるサポートを全力で行います。</p>
+					<p><span class="text-secondary font-bold mr-2">A.</span>問題ございません。ヒアリングを通じて、補助事業を円滑に遂行できるようサポートいたしますので、専門知識がなくても安心してご相談ください。</p>
+				</div>
+			</div>
+
+			<div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+				<button type="button" class="js-faq-toggle w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none" aria-expanded="false" aria-controls="faq4">
+					<span class="font-bold text-lg text-gray-800"><span class="text-primary mr-2">Q.</span>補助金はいつもらえますか？</span>
+					<i class="js-faq-icon fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+				</button>
+				<div id="faq4" class="hidden px-6 pb-4 text-gray-600 border-t border-gray-100 pt-4">
+					<p><span class="text-secondary font-bold mr-2">A.</span>年度毎に実施いたしますので、事業実施の年度末である3月になります。</p>
+				</div>
+			</div>
+
+			<div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+				<button type="button" class="js-faq-toggle w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none" aria-expanded="false" aria-controls="faq5">
+					<span class="font-bold text-lg text-gray-800"><span class="text-primary mr-2">Q.</span>既に設備を更新済みでも申請できますか？</span>
+					<i class="js-faq-icon fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+				</button>
+				<div id="faq5" class="hidden px-6 pb-4 text-gray-600 border-t border-gray-100 pt-4">
+					<p><span class="text-secondary font-bold mr-2">A.</span>申請前の設備更新は補助金の対象にはなりません。</p>
+				</div>
+			</div>
+
+			<div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+				<button type="button" class="js-faq-toggle w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none" aria-expanded="false" aria-controls="faq6">
+					<span class="font-bold text-lg text-gray-800"><span class="text-primary mr-2">Q.</span>補助金申請に関してすべて丸投げで大丈夫ですか？</span>
+					<i class="js-faq-icon fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+				</button>
+				<div id="faq6" class="hidden px-6 pb-4 text-gray-600 border-t border-gray-100 pt-4">
+					<p><span class="text-secondary font-bold mr-2">A.</span>弊社の事業は「申請代行業」ではなく「補助金コンサル業」になります。申請・途中報告・実績報告等の際に、適時、申請者様と密に連携し、責任をもって補助事業の伴走支援を行っております。丸投げをご希望の方は弊社のご利用をご遠慮ください。</p>
 				</div>
 			</div>
 		</div>
@@ -333,11 +333,11 @@ $contact_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['c
 					</tr>
 					<tr class="flex flex-col sm:table-row">
 						<th class="px-6 py-4 bg-gray-50 text-left text-sm font-bold text-gray-700">代表者名</th>
-						<td class="px-6 py-4 text-sm text-gray-900">岩月 政明</td>
+						<td class="px-6 py-4 text-sm text-gray-900">山口 泰弘</td>
 					</tr>
 					<tr class="flex flex-col sm:table-row">
 						<th class="px-6 py-4 bg-gray-50 text-left text-sm font-bold text-gray-700">所在地</th>
-						<td class="px-6 py-4 text-sm text-gray-900">愛知県名古屋市名東区</td>
+						<td class="px-6 py-4 text-sm text-gray-900">〒453-0811<br>愛知県名古屋市中村区太閤通8丁目30 ARK中村公園5階D</td>
 					</tr>
 					<tr class="flex flex-col sm:table-row">
 						<th class="px-6 py-4 bg-gray-50 text-left text-sm font-bold text-gray-700">連絡先</th>
@@ -384,30 +384,45 @@ $contact_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['c
 				<input type="hidden" name="action" value="subsupo_contact">
 				<?php wp_nonce_field( 'subsupo_contact', 'subsupo_contact_nonce' ); ?>
 
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-					<div>
-						<label for="company_name" class="block text-sm font-medium text-gray-700 mb-1">会社名 <span class="text-red-500 text-xs ml-1 bg-red-50 px-2 py-0.5 rounded">必須</span></label>
-						<input type="text" id="company_name" name="company_name" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-20 bg-gray-50 outline-none transition">
-					</div>
-					<div>
-						<label for="name" class="block text-sm font-medium text-gray-700 mb-1">ご担当者名 <span class="text-red-500 text-xs ml-1 bg-red-50 px-2 py-0.5 rounded">必須</span></label>
-						<input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-20 bg-gray-50 outline-none transition">
-					</div>
+				<div>
+					<label for="email" class="block text-sm font-medium text-gray-700 mb-1">メールアドレス <span class="text-red-500 text-xs ml-1 bg-red-50 px-2 py-0.5 rounded">必須</span></label>
+					<input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-20 bg-gray-50 outline-none transition">
 				</div>
 
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 					<div>
-						<label for="phone" class="block text-sm font-medium text-gray-700 mb-1">電話番号 <span class="text-red-500 text-xs ml-1 bg-red-50 px-2 py-0.5 rounded">必須</span></label>
-						<input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-20 bg-gray-50 outline-none transition">
+						<label for="company_name" class="block text-sm font-medium text-gray-700 mb-1">企業名・団体名 <span class="text-red-500 text-xs ml-1 bg-red-50 px-2 py-0.5 rounded">必須</span></label>
+						<input type="text" id="company_name" name="company_name" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-20 bg-gray-50 outline-none transition">
 					</div>
 					<div>
-						<label for="email" class="block text-sm font-medium text-gray-700 mb-1">メールアドレス <span class="text-red-500 text-xs ml-1 bg-red-50 px-2 py-0.5 rounded">必須</span></label>
-						<input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-20 bg-gray-50 outline-none transition">
+						<label for="company_name_kana" class="block text-sm font-medium text-gray-700 mb-1">企業名・団体名(かな) <span class="text-gray-500 text-xs ml-1">任意</span></label>
+						<input type="text" id="company_name_kana" name="company_name_kana" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-20 bg-gray-50 outline-none transition">
 					</div>
 				</div>
 
 				<div>
-					<label for="message" class="block text-sm font-medium text-gray-700 mb-1">ご検討中の設備・ご相談内容 <span class="text-gray-500 text-xs ml-1">任意</span></label>
+					<label for="department" class="block text-sm font-medium text-gray-700 mb-1">部署/役職 <span class="text-gray-500 text-xs ml-1">任意</span></label>
+					<input type="text" id="department" name="department" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-20 bg-gray-50 outline-none transition">
+				</div>
+
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+					<div>
+						<label for="name" class="block text-sm font-medium text-gray-700 mb-1">氏名 <span class="text-red-500 text-xs ml-1 bg-red-50 px-2 py-0.5 rounded">必須</span></label>
+						<input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-20 bg-gray-50 outline-none transition">
+					</div>
+					<div>
+						<label for="name_kana" class="block text-sm font-medium text-gray-700 mb-1">氏名(かな) <span class="text-gray-500 text-xs ml-1">任意</span></label>
+						<input type="text" id="name_kana" name="name_kana" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-20 bg-gray-50 outline-none transition">
+					</div>
+				</div>
+
+				<div>
+					<label for="phone" class="block text-sm font-medium text-gray-700 mb-1">電話番号 <span class="text-red-500 text-xs ml-1 bg-red-50 px-2 py-0.5 rounded">必須</span></label>
+					<input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-20 bg-gray-50 outline-none transition">
+				</div>
+
+				<div>
+					<label for="message" class="block text-sm font-medium text-gray-700 mb-1">お問い合わせ内容 <span class="text-gray-500 text-xs ml-1">任意</span></label>
 					<textarea id="message" name="message" rows="4" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-20 bg-gray-50 outline-none transition" placeholder="例：工場の空調を最新のものに入れ替えたいのですが、使える補助金はありますか？"></textarea>
 				</div>
 
