@@ -21,7 +21,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           local-dir: ./
-          server-dir: /sub-sup.com/public_html/wp-content/themes/subsup/
+          server-dir: /sub-sup.net/public_html/wp-content/themes/subsup/
           exclude: |
             **/.git*
             **/.git*/**
