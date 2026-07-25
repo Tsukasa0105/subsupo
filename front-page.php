@@ -41,50 +41,6 @@ $contact_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['c
 	</div>
 </section>
 
-<section class="py-12 bg-gray-50 border-y border-gray-200">
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-		<div class="flex flex-col md:flex-row justify-between items-end mb-6">
-			<h2 class="text-2xl font-bold text-gray-800 border-l-4 border-primary pl-3">お知らせ・新着情報</h2>
-			<a href="<?php echo esc_url( get_post_type_archive_link( 'news' ) ); ?>" class="text-primary hover:underline font-medium mt-4 md:mt-0 flex items-center">
-				一覧を見る <i class="fas fa-chevron-right ml-1 text-sm"></i>
-			</a>
-		</div>
-		<div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
-			<ul class="divide-y divide-gray-200">
-				<?php
-				$subsupo_top_news = new WP_Query(
-					array(
-						'post_type'      => 'news',
-						'posts_per_page' => 3,
-					)
-				);
-				if ( $subsupo_top_news->have_posts() ) :
-					while ( $subsupo_top_news->have_posts() ) :
-						$subsupo_top_news->the_post();
-						?>
-						<li class="p-4 hover:bg-gray-50 transition">
-							<a href="<?php the_permalink(); ?>" class="flex flex-col md:flex-row md:items-center gap-3">
-								<div class="flex items-center gap-3 w-full md:w-auto">
-									<span class="text-gray-500 text-sm whitespace-nowrap"><?php echo esc_html( get_the_date( 'Y.m.d' ) ); ?></span>
-									<span class="<?php echo esc_attr( subsupo_news_badge_class( get_the_ID() ) ); ?> text-white text-xs font-bold px-2 py-1 rounded whitespace-nowrap"><?php echo esc_html( subsupo_news_badge_label( get_the_ID() ) ); ?></span>
-								</div>
-								<span class="text-gray-800 font-medium md:ml-4"><?php the_title(); ?></span>
-							</a>
-						</li>
-						<?php
-					endwhile;
-					wp_reset_postdata();
-				else :
-					?>
-					<li class="p-4 text-gray-500">現在お知らせはありません。</li>
-					<?php
-				endif;
-				?>
-			</ul>
-		</div>
-	</div>
-</section>
-
 <section class="py-16 bg-white bg-pattern">
 	<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 		<h2 class="text-3xl font-bold mb-8">こんな<span class="text-primary border-b-4 border-secondary pb-1">お悩み</span>、ありませんか？</h2>
@@ -313,6 +269,50 @@ $contact_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['c
 					<p><span class="text-secondary font-bold mr-2">A.</span>弊社の事業は「申請代行業」ではなく「補助金コンサル業」になります。申請・途中報告・実績報告等の際に、適時、申請者様と密に連携し、責任をもって補助事業の伴走支援を行っております。丸投げをご希望の方は弊社のご利用をご遠慮ください。</p>
 				</div>
 			</div>
+		</div>
+	</div>
+</section>
+
+<section class="py-12 bg-gray-50 border-y border-gray-200">
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="flex flex-col md:flex-row justify-between items-end mb-6">
+			<h2 class="text-2xl font-bold text-gray-800 border-l-4 border-primary pl-3">お知らせ・新着情報</h2>
+			<a href="<?php echo esc_url( get_post_type_archive_link( 'news' ) ); ?>" class="text-primary hover:underline font-medium mt-4 md:mt-0 flex items-center">
+				一覧を見る <i class="fas fa-chevron-right ml-1 text-sm"></i>
+			</a>
+		</div>
+		<div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
+			<ul class="divide-y divide-gray-200">
+				<?php
+				$subsupo_top_news = new WP_Query(
+					array(
+						'post_type'      => 'news',
+						'posts_per_page' => 3,
+					)
+				);
+				if ( $subsupo_top_news->have_posts() ) :
+					while ( $subsupo_top_news->have_posts() ) :
+						$subsupo_top_news->the_post();
+						?>
+						<li class="p-4 hover:bg-gray-50 transition">
+							<a href="<?php the_permalink(); ?>" class="flex flex-col md:flex-row md:items-center gap-3">
+								<div class="flex items-center gap-3 w-full md:w-auto">
+									<span class="text-gray-500 text-sm whitespace-nowrap"><?php echo esc_html( get_the_date( 'Y.m.d' ) ); ?></span>
+									<span class="<?php echo esc_attr( subsupo_news_badge_class( get_the_ID() ) ); ?> text-white text-xs font-bold px-2 py-1 rounded whitespace-nowrap"><?php echo esc_html( subsupo_news_badge_label( get_the_ID() ) ); ?></span>
+								</div>
+								<span class="text-gray-800 font-medium md:ml-4"><?php the_title(); ?></span>
+							</a>
+						</li>
+						<?php
+					endwhile;
+					wp_reset_postdata();
+				else :
+					?>
+					<li class="p-4 text-gray-500">現在お知らせはありません。</li>
+					<?php
+				endif;
+				?>
+			</ul>
 		</div>
 	</div>
 </section>
