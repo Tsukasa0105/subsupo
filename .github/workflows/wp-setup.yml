@@ -17,51 +17,102 @@ jobs:
           WP_USERNAME: ${{ secrets.WP_USERNAME }}
           WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
         run: |
-          set -euo pipefail
+          set -uo pipefail
           AUTH="${WP_USERNAME}:${WP_APP_PASSWORD}"
           BASE="${WP_URL%/}/wp-json"
+          echo "Target: $BASE (WP_URL secret = '${WP_URL}')"
 
+          # Calls the REST API and leaves the result in $RESPONSE_BODY.
+          # Always prints the HTTP status so a bad response is visible in the
+          # log instead of silently crashing a downstream jq call.
+          api_call() {
+            local method="$1" url="$2" data="${3:-}"
+            local tmpfile status
+            tmpfile=$(mktemp)
+            if [ -n "$data" ]; then
+              status=$(curl -sS -u "$AUTH" -X "$method" -H "Content-Type: application/json" -d "$data" -o "$tmpfile" -w '%{http_code}' "$url" || echo "curl_error")
+            else
+              status=$(curl -sS -u "$AUTH" -X "$method" -o "$tmpfile" -w '%{http_code}' "$url" || echo "curl_error")
+            fi
+            echo "  [$method $url] -> HTTP $status"
+            if [ "$status" = "curl_error" ] || ! jq -e . "$tmpfile" >/dev/null 2>&1; then
+              echo "  !! Response is not valid JSON. First 500 chars of body:"
+              head -c 500 "$tmpfile"
+              echo
+              RESPONSE_BODY="null"
+              rm -f "$tmpfile"
+              return 1
+            fi
+            RESPONSE_BODY=$(cat "$tmpfile")
+            rm -f "$tmpfile"
+            return 0
+          }
+
+          echo
           echo "## Active plugins"
-          curl -sS -u "$AUTH" "$BASE/wp/v2/plugins" \
-            | jq -r 'if type=="array" then (.[] | select(.status=="active") | .plugin + "  —  " + .name) else "(could not list plugins: " + (.message // tostring) + ")" end'
+          if api_call GET "$BASE/wp/v2/plugins"; then
+            echo "$RESPONSE_BODY" | jq -r 'if type=="array" then (.[] | select(.status=="active") | .plugin + "  —  " + .name) else "(unexpected shape: " + (.message // tostring) + ")" end'
+          else
+            echo "  -> Skipping plugin list (see error above)."
+          fi
 
           echo
           echo "## Registered post types (confirms the subsup theme is active)"
-          curl -sS -u "$AUTH" "$BASE/wp/v2/types" | jq -r 'keys[]'
+          if api_call GET "$BASE/wp/v2/types"; then
+            echo "$RESPONSE_BODY" | jq -r 'keys[]'
+          else
+            echo "  -> Skipping post type list (see error above)."
+          fi
 
           echo
           echo "## Existing pages"
-          curl -sS -u "$AUTH" "$BASE/wp/v2/pages?per_page=100&status=publish,draft,private" \
-            | jq -r '.[] | .slug + "  (" + .status + ")  #" + (.id|tostring)'
+          if api_call GET "$BASE/wp/v2/pages?per_page=100&status=publish,draft,private"; then
+            echo "$RESPONSE_BODY" | jq -r '.[] | .slug + "  (" + .status + ")  #" + (.id|tostring)'
+          else
+            echo "  -> Skipping page list (see error above)."
+          fi
 
           echo
           echo "## Ensuring the Privacy Policy page exists with the current content"
-          EXISTING_PAGE_ID=$(curl -sS -u "$AUTH" "$BASE/wp/v2/pages?slug=privacy-policy" | jq -r '.[0].id // empty')
+          EXISTING_PAGE_ID=""
+          if api_call GET "$BASE/wp/v2/pages?slug=privacy-policy"; then
+            EXISTING_PAGE_ID=$(echo "$RESPONSE_BODY" | jq -r '.[0].id // empty')
+          fi
+          PRIVACY_JSON=$(cat .github/workflows/data/privacy-policy-page.json)
           if [ -z "$EXISTING_PAGE_ID" ]; then
-            RESPONSE=$(curl -sS -u "$AUTH" -X POST "$BASE/wp/v2/pages" \
-              -H "Content-Type: application/json" \
-              --data-binary @.github/workflows/data/privacy-policy-page.json)
-            echo "$RESPONSE" | jq -r '"Created page id: " + (.id|tostring) + "  link: " + .link'
+            if api_call POST "$BASE/wp/v2/pages" "$PRIVACY_JSON"; then
+              echo "$RESPONSE_BODY" | jq -r '"Created page id: " + (.id|tostring) + "  link: " + .link'
+            else
+              echo "  -> Failed to create the privacy policy page (see error above)."
+            fi
           else
-            RESPONSE=$(curl -sS -u "$AUTH" -X POST "$BASE/wp/v2/pages/${EXISTING_PAGE_ID}" \
-              -H "Content-Type: application/json" \
-              --data-binary @.github/workflows/data/privacy-policy-page.json)
-            echo "$RESPONSE" | jq -r '"Updated page id: " + (.id|tostring) + "  link: " + .link'
+            if api_call POST "$BASE/wp/v2/pages/${EXISTING_PAGE_ID}" "$PRIVACY_JSON"; then
+              echo "$RESPONSE_BODY" | jq -r '"Updated page id: " + (.id|tostring) + "  link: " + .link'
+            else
+              echo "  -> Failed to update the privacy policy page (see error above)."
+            fi
           fi
 
           echo
           echo "## Existing news posts (before sync)"
-          curl -sS -u "$AUTH" "$BASE/wp/v2/news?per_page=100&status=publish,draft&_fields=id,slug,title,status" \
-            | jq -r '.[] | "#" + (.id|tostring) + "  " + .slug + "  " + .title.rendered'
+          if api_call GET "$BASE/wp/v2/news?per_page=100&status=publish,draft&_fields=id,slug,title,status"; then
+            echo "$RESPONSE_BODY" | jq -r '.[] | "#" + (.id|tostring) + "  " + .slug + "  " + .title.rendered'
+          else
+            echo "  -> Could not list existing news posts (see error above). Aborting news sync."
+            exit 1
+          fi
 
           echo
           echo "## Ensuring news_category terms exist"
           get_or_create_term() {
-            local name="$1"
-            local id
-            id=$(curl -sS -u "$AUTH" -G "$BASE/wp/v2/news_category" --data-urlencode "search=${name}" | jq -r --arg n "$name" '[.[] | select(.name == $n)][0].id // empty')
+            local name="$1" id=""
+            if api_call GET "$BASE/wp/v2/news_category?search=$(python3 -c "import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1]))" "$name")"; then
+              id=$(echo "$RESPONSE_BODY" | jq -r --arg n "$name" '[.[] | select(.name == $n)][0].id // empty')
+            fi
             if [ -z "$id" ]; then
-              id=$(curl -sS -u "$AUTH" -X POST "$BASE/wp/v2/news_category" -H "Content-Type: application/json" -d "{\"name\": \"${name}\"}" | jq -r '.id')
+              if api_call POST "$BASE/wp/v2/news_category" "{\"name\": \"${name}\"}"; then
+                id=$(echo "$RESPONSE_BODY" | jq -r '.id // empty')
+              fi
             fi
             echo "$id"
           }
@@ -69,6 +120,11 @@ jobs:
           TERM_OSHIRASE=$(get_or_create_term "お知らせ")
           echo "補助金情報 term id: $TERM_HOJOKIN"
           echo "お知らせ term id: $TERM_OSHIRASE"
+
+          if [ -z "$TERM_HOJOKIN" ] || [ -z "$TERM_OSHIRASE" ]; then
+            echo "!! Could not resolve news_category term IDs, aborting news sync."
+            exit 1
+          fi
 
           echo
           echo "## Syncing news posts to match the current copy deck"
@@ -88,17 +144,28 @@ jobs:
             PAYLOAD=$(jq -n --arg title "$TITLE" --arg slug "$SLUG" --arg content "$CONTENT" --arg date "$DATE" --argjson term "$TERM_ID" \
               '{title: $title, slug: $slug, content: $content, date: $date, status: "publish", news_category: [$term]}')
 
-            EXISTING_ID=$(curl -sS -u "$AUTH" "$BASE/wp/v2/news?slug=${SLUG}" | jq -r '.[0].id // empty')
+            EXISTING_ID=""
+            if api_call GET "$BASE/wp/v2/news?slug=${SLUG}"; then
+              EXISTING_ID=$(echo "$RESPONSE_BODY" | jq -r '.[0].id // empty')
+            fi
+
             if [ -z "$EXISTING_ID" ]; then
-              curl -sS -u "$AUTH" -X POST "$BASE/wp/v2/news" -H "Content-Type: application/json" -d "$PAYLOAD" \
-                | jq -r '"Created: #" + (.id|tostring) + "  " + .slug'
+              if api_call POST "$BASE/wp/v2/news" "$PAYLOAD"; then
+                echo "$RESPONSE_BODY" | jq -r '"Created: #" + (.id|tostring) + "  " + .slug'
+              else
+                echo "  -> Failed to create '${SLUG}' (see error above)."
+              fi
             else
-              curl -sS -u "$AUTH" -X POST "$BASE/wp/v2/news/${EXISTING_ID}" -H "Content-Type: application/json" -d "$PAYLOAD" \
-                | jq -r '"Updated: #" + (.id|tostring) + "  " + .slug'
+              if api_call POST "$BASE/wp/v2/news/${EXISTING_ID}" "$PAYLOAD"; then
+                echo "$RESPONSE_BODY" | jq -r '"Updated: #" + (.id|tostring) + "  " + .slug'
+              else
+                echo "  -> Failed to update '${SLUG}' (see error above)."
+              fi
             fi
           done
 
           echo
           echo "## News posts after sync (review any slugs NOT in the list above — they are old/unexpected posts left untouched)"
-          curl -sS -u "$AUTH" "$BASE/wp/v2/news?per_page=100&status=publish,draft&_fields=id,slug,title,status" \
-            | jq -r '.[] | "#" + (.id|tostring) + "  " + .slug + "  " + .title.rendered'
+          if api_call GET "$BASE/wp/v2/news?per_page=100&status=publish,draft&_fields=id,slug,title,status"; then
+            echo "$RESPONSE_BODY" | jq -r '.[] | "#" + (.id|tostring) + "  " + .slug + "  " + .title.rendered'
+          fi
