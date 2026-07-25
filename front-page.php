@@ -17,8 +17,8 @@ $contact_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['c
 						相談実績500件以上！採択率90%超
 					</span>
 					<h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl leading-tight">
-						<span class="block mb-2">面倒な省エネ補助金の申請を</span>
-						<span class="block text-primary">補助金のプロが伴走支援！</span>
+						<span class="block mb-2">補助金申請のプロが</span>
+						<span class="block text-primary">省エネ補助金申請を伴走支援</span>
 						<span class="block text-2xl sm:text-3xl mt-4 text-gray-700">設備投資（イニシャルコスト）を大幅削減し、高効率な設備でランニングコストも抑えませんか？</span>
 					</h1>
 					<p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
@@ -101,19 +101,19 @@ $contact_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['c
 					<div class="flex-shrink-0 flex items-center justify-center h-8 w-8 rounded-full bg-red-100 text-red-500 mt-1">
 						<i class="fas fa-check"></i>
 					</div>
-					<p class="ml-4 text-lg text-gray-700 font-medium pt-1">老朽化した設備を更新したいが、初期費用が高くて手が出ない</p>
+					<p class="ml-4 text-lg text-gray-700 font-medium pt-1">老朽化した設備を更新したいが、初期費用が高くて手が出ない。</p>
 				</li>
 				<li class="flex items-start">
 					<div class="flex-shrink-0 flex items-center justify-center h-8 w-8 rounded-full bg-red-100 text-red-500 mt-1">
 						<i class="fas fa-check"></i>
 					</div>
-					<p class="ml-4 text-lg text-gray-700 font-medium pt-1">どのような設備が対象になるのかわからない</p>
+					<p class="ml-4 text-lg text-gray-700 font-medium pt-1">どのような設備が対象になるのかわからない。</p>
 				</li>
 				<li class="flex items-start">
 					<div class="flex-shrink-0 flex items-center justify-center h-8 w-8 rounded-full bg-red-100 text-red-500 mt-1">
 						<i class="fas fa-check"></i>
 					</div>
-					<p class="ml-4 text-lg text-gray-700 font-medium pt-1">申請書類が複雑すぎて、自社だけでは対応しきれない</p>
+					<p class="ml-4 text-lg text-gray-700 font-medium pt-1">申請書類が複雑すぎて、自社だけでは対応しきれない。</p>
 				</li>
 			</ul>
 		</div>
@@ -202,7 +202,7 @@ $contact_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['c
 				</div>
 				<h3 class="text-xl font-bold mb-4 text-gray-800">全国対応＆<br>申請者様に寄り添う対応</h3>
 				<p class="text-gray-600 text-left">
-					現地訪問、オンライン面談を活用し、北海道から沖縄まで全国どこでも対応可能。申請者様の不安を解決しながら補助事業の完了まで安心感をもって支援致します。
+					現地訪問、オンライン面談を活用し、北海道から沖縄まで全国どこでも対応可能、申請者様の不安を解決しながら補助事業の完了まで安心感をもって支援致します。
 				</p>
 			</div>
 		</div>
@@ -333,18 +333,11 @@ $contact_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['c
 					</tr>
 					<tr class="flex flex-col sm:table-row">
 						<th class="px-6 py-4 bg-gray-50 text-left text-sm font-bold text-gray-700">代表者名</th>
-						<td class="px-6 py-4 text-sm text-gray-900">山口 泰弘</td>
+						<td class="px-6 py-4 text-sm text-gray-900">山口泰弘</td>
 					</tr>
 					<tr class="flex flex-col sm:table-row">
 						<th class="px-6 py-4 bg-gray-50 text-left text-sm font-bold text-gray-700">所在地</th>
 						<td class="px-6 py-4 text-sm text-gray-900">〒453-0811<br>愛知県名古屋市中村区太閤通8丁目30 ARK中村公園5階D</td>
-					</tr>
-					<tr class="flex flex-col sm:table-row">
-						<th class="px-6 py-4 bg-gray-50 text-left text-sm font-bold text-gray-700">連絡先</th>
-						<td class="px-6 py-4 text-sm text-gray-900">
-							TEL: 080-4346-8593<br>
-							Email: iwatsuki@sub-sup.com
-						</td>
 					</tr>
 					<tr class="flex flex-col sm:table-row">
 						<th class="px-6 py-4 bg-gray-50 text-left text-sm font-bold text-gray-700">事業内容</th>

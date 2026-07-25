@@ -65,7 +65,7 @@ function subsupo_seed_news_content() {
 	$items = array(
 		array(
 			'title'   => 'HP新設いたしました。',
-			'content' => 'この度、株式会社サブサポのコーポレートサイトを新設いたしました。今後とも何卒よろしくお願い申し上げます。',
+			'content' => 'HP新設いたしました。',
 			'date'    => '2026-07-23 10:00:00',
 			'term'    => $oshirase_id,
 		),
@@ -83,7 +83,7 @@ function subsupo_seed_news_content() {
 		),
 		array(
 			'title'   => '設立',
-			'content' => '株式会社サブサポを設立いたしました。',
+			'content' => '設立',
 			'date'    => '2026-01-14 10:00:00',
 			'term'    => $oshirase_id,
 		),
