@@ -35,15 +35,18 @@ jobs:
             | jq -r '.[] | .slug + "  (" + .status + ")  #" + (.id|tostring)'
 
           echo
-          echo "## Ensuring the Privacy Policy page exists"
-          EXISTING_COUNT=$(curl -sS -u "$AUTH" "$BASE/wp/v2/pages?slug=privacy-policy" | jq 'length')
-          if [ "$EXISTING_COUNT" = "0" ]; then
+          echo "## Ensuring the Privacy Policy page exists with the current content"
+          EXISTING_PAGE_ID=$(curl -sS -u "$AUTH" "$BASE/wp/v2/pages?slug=privacy-policy" | jq -r '.[0].id // empty')
+          if [ -z "$EXISTING_PAGE_ID" ]; then
             RESPONSE=$(curl -sS -u "$AUTH" -X POST "$BASE/wp/v2/pages" \
               -H "Content-Type: application/json" \
               --data-binary @.github/workflows/data/privacy-policy-page.json)
             echo "$RESPONSE" | jq -r '"Created page id: " + (.id|tostring) + "  link: " + .link'
           else
-            echo "Privacy policy page already exists, skipping creation."
+            RESPONSE=$(curl -sS -u "$AUTH" -X POST "$BASE/wp/v2/pages/${EXISTING_PAGE_ID}" \
+              -H "Content-Type: application/json" \
+              --data-binary @.github/workflows/data/privacy-policy-page.json)
+            echo "$RESPONSE" | jq -r '"Updated page id: " + (.id|tostring) + "  link: " + .link'
           fi
 
           echo

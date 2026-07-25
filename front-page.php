@@ -430,7 +430,7 @@ $contact_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['c
 					<button type="submit" class="inline-flex justify-center items-center w-full md:w-auto px-12 py-4 border border-transparent text-lg font-bold rounded-md text-white bg-accent hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent shadow-lg transition duration-300 transform hover:-translate-y-1">
 						<i class="far fa-paper-plane mr-2"></i> 上記の内容で送信する
 					</button>
-					<p class="mt-4 text-xs text-gray-500">送信ボタンを押すことで、プライバシーポリシーに同意したものとみなします。</p>
+					<p class="mt-4 text-xs text-gray-500">送信ボタンを押すことで、<a href="<?php echo esc_url( get_privacy_policy_url() ? get_privacy_policy_url() : '#' ); ?>" class="underline hover:text-gray-700">プライバシーポリシー</a>に同意したものとみなします。</p>
 				</div>
 			</form>
 		</div>
