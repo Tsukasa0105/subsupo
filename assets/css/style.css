@@ -99,7 +99,12 @@ html {
 	margin-bottom: 0;
 }
 
-.subsupo-cf7-input {
+/* Target both our own marker class AND Contact Form 7's default classes
+   (.wpcf7-form-control / .wpcf7-submit), since manual edits made through
+   the CF7 form editor's tag generator can regenerate a tag without
+   preserving a custom "class:" option. */
+.subsupo-cf7-input,
+.subsupo-cf7-wrap .wpcf7-form-control:not(.wpcf7-submit) {
 	display: block;
 	width: 100%;
 	padding: 0.75rem 1rem;
@@ -112,17 +117,20 @@ html {
 	transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.subsupo-cf7-input:focus {
+.subsupo-cf7-input:focus,
+.subsupo-cf7-wrap .wpcf7-form-control:not(.wpcf7-submit):focus {
 	border-color: #0087cd;
 	box-shadow: 0 0 0 3px rgba(0, 135, 205, 0.2);
 }
 
-textarea.subsupo-cf7-input {
+textarea.subsupo-cf7-input,
+.subsupo-cf7-wrap textarea.wpcf7-form-control {
 	min-height: 6rem;
 	resize: vertical;
 }
 
-.subsupo-cf7-submit {
+.subsupo-cf7-submit,
+.subsupo-cf7-wrap .wpcf7-submit {
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
@@ -139,12 +147,14 @@ textarea.subsupo-cf7-input {
 	transition: background-color 0.2s ease;
 }
 
-.subsupo-cf7-submit:hover {
+.subsupo-cf7-submit:hover,
+.subsupo-cf7-wrap .wpcf7-submit:hover {
 	background-color: #e56e00;
 }
 
 @media (min-width: 768px) {
-	.subsupo-cf7-submit {
+	.subsupo-cf7-submit,
+	.subsupo-cf7-wrap .wpcf7-submit {
 		width: auto;
 	}
 }
