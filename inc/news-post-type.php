@@ -48,51 +48,70 @@ function subsupo_news_archive_query( $query ) {
 add_action( 'pre_get_posts', 'subsupo_news_archive_query' );
 
 /**
- * Seed demo content matching the original design on first theme activation.
- * Safe to run repeatedly: it only inserts posts when the CPT is empty.
+ * News posts to keep in sync with the current copy deck. Each item is
+ * looked up by slug and only created if missing, so this is safe to run
+ * on every wp-admin page load (see subsupo_seed_news_content() below) —
+ * it never duplicates or overwrites a post that already exists.
  */
-function subsupo_seed_news_content() {
-	if ( ! empty( get_posts( array( 'post_type' => 'news', 'numberposts' => 1, 'fields' => 'ids' ) ) ) ) {
-		return;
-	}
-
-	$hojokin = wp_insert_term( '補助金情報', 'news_category' );
-	$oshirase = wp_insert_term( 'お知らせ', 'news_category' );
-
-	$hojokin_id  = is_wp_error( $hojokin ) ? get_term_by( 'name', '補助金情報', 'news_category' )->term_id : $hojokin['term_id'];
-	$oshirase_id = is_wp_error( $oshirase ) ? get_term_by( 'name', 'お知らせ', 'news_category' )->term_id : $oshirase['term_id'];
-
-	$items = array(
+function subsupo_news_seed_items() {
+	return array(
 		array(
+			'slug'    => 'hp-shinsetsu',
 			'title'   => 'HP新設いたしました。',
 			'content' => 'HP新設いたしました。',
 			'date'    => '2026-07-23 10:00:00',
-			'term'    => $oshirase_id,
+			'term'    => 'お知らせ',
 		),
 		array(
+			'slug'    => 'koubo-shimekiri-0427',
 			'title'   => '経産省 省エネ・非化石転換補助金の公募締め切りました。',
 			'content' => '経産省 省エネ・非化石転換補助金の公募締め切りました。次回の2次公募は6月上旬より公募開始予定となります。',
 			'date'    => '2026-04-27 10:00:00',
-			'term'    => $hojokin_id,
+			'term'    => '補助金情報',
 		),
 		array(
+			'slug'    => 'koubo-kaishi-0330',
 			'title'   => '経産省 省エネ・非化石転換補助金の公募開始しました。',
 			'content' => '経産省 省エネ・非化石転換補助金の公募開始しました。',
 			'date'    => '2026-03-30 10:00:00',
-			'term'    => $hojokin_id,
+			'term'    => '補助金情報',
 		),
 		array(
+			'slug'    => 'setsuritsu',
 			'title'   => '設立',
 			'content' => '設立',
 			'date'    => '2026-01-14 10:00:00',
-			'term'    => $oshirase_id,
+			'term'    => 'お知らせ',
 		),
 	);
+}
 
-	foreach ( $items as $item ) {
+function subsupo_get_or_create_news_term( $name ) {
+	$term = get_term_by( 'name', $name, 'news_category' );
+	if ( $term instanceof WP_Term ) {
+		return $term->term_id;
+	}
+	$inserted = wp_insert_term( $name, 'news_category' );
+	return is_wp_error( $inserted ) ? 0 : $inserted['term_id'];
+}
+
+/**
+ * Creates any missing news posts (and their terms). Runs on admin_init so
+ * it happens the next time an administrator loads wp-admin — no external
+ * network call is involved, since it all runs locally in PHP on the site.
+ */
+function subsupo_seed_news_content() {
+	foreach ( subsupo_news_seed_items() as $item ) {
+		if ( get_page_by_path( $item['slug'], OBJECT, 'news' ) ) {
+			continue;
+		}
+
+		$term_id = subsupo_get_or_create_news_term( $item['term'] );
+
 		$post_id = wp_insert_post(
 			array(
 				'post_type'    => 'news',
+				'post_name'    => $item['slug'],
 				'post_title'   => $item['title'],
 				'post_content' => $item['content'],
 				'post_status'  => 'publish',
@@ -100,9 +119,9 @@ function subsupo_seed_news_content() {
 			)
 		);
 
-		if ( $post_id && ! is_wp_error( $post_id ) ) {
-			wp_set_post_terms( $post_id, array( $item['term'] ), 'news_category' );
+		if ( $post_id && ! is_wp_error( $post_id ) && $term_id ) {
+			wp_set_post_terms( $post_id, array( $term_id ), 'news_category' );
 		}
 	}
 }
-add_action( 'after_switch_theme', 'subsupo_seed_news_content' );
+add_action( 'admin_init', 'subsupo_seed_news_content' );

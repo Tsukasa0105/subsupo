@@ -19,3 +19,73 @@ function subsupo_maybe_set_privacy_policy_page() {
 	}
 }
 add_action( 'init', 'subsupo_maybe_set_privacy_policy_page' );
+
+/**
+ * Creates the privacy policy page if it doesn't exist yet. Runs on
+ * admin_init (the next time an administrator loads wp-admin) so this is
+ * provisioned locally by WordPress itself — no external network call is
+ * involved, unlike the GitHub Actions REST bridge this replaces.
+ */
+function subsupo_create_privacy_policy_page() {
+	if ( get_page_by_path( 'privacy-policy' ) ) {
+		return;
+	}
+
+	$content = <<<'HTML'
+<!-- wp:paragraph --><p>株式会社サブサポ（以下「当社」）は、当社が提供する本ウェブサイト（以下「本サイト」）における、お客様の個人情報の取り扱いについて、以下のとおりプライバシーポリシー（以下「本ポリシー」）を定めます。</p><!-- /wp:paragraph -->
+
+<!-- wp:heading --><h2>第1条（個人情報）</h2><!-- /wp:heading -->
+<!-- wp:paragraph --><p>「個人情報」とは、個人情報保護法にいう「個人情報」を指すものとし、生存する個人に関する情報であって、当該情報に含まれる氏名、生年月日、住所、電話番号、連絡先その他の記述等により特定の個人を識別できる情報、および容貌、指紋、声紋にかかるデータ、および健康保険証の保険者番号などの当該情報単体から特定の個人を識別できる情報（個人識別情報）を指します。</p><!-- /wp:paragraph -->
+
+<!-- wp:heading --><h2>第2条（個人情報の収集方法）</h2><!-- /wp:heading -->
+<!-- wp:paragraph --><p>当社は、お客様が本サイトのお問い合わせフォームをご利用になる際に、会社名・団体名、ご担当者名、部署/役職、電話番号、メールアドレス、お問い合わせ内容等の個人情報をお尋ねすることがあります。</p><!-- /wp:paragraph -->
+
+<!-- wp:heading --><h2>第3条（個人情報を収集・利用する目的）</h2><!-- /wp:heading -->
+<!-- wp:paragraph --><p>当社が個人情報を収集・利用する目的は、以下のとおりです。</p><!-- /wp:paragraph -->
+<!-- wp:list --><ul class="wp-block-list">
+<li>お問い合わせ・ご相談への対応、および補助金コンサルティングサービスに関するご案内・ご連絡のため</li>
+<li>本サイトの改善、新サービスの検討等の参考とするため</li>
+<li>その他、上記利用目的に付随する目的のため</li>
+</ul><!-- /wp:list -->
+
+<!-- wp:heading --><h2>第4条（利用目的の変更）</h2><!-- /wp:heading -->
+<!-- wp:paragraph --><p>当社は、利用目的が変更前と関連性を有すると合理的に認められる場合に限り、個人情報の利用目的を変更するものとします。利用目的の変更を行った場合には、変更後の目的について、当社所定の方法により、本人に通知し、または本サイト上に公表するものとします。</p><!-- /wp:paragraph -->
+
+<!-- wp:heading --><h2>第5条（個人情報の第三者提供）</h2><!-- /wp:heading -->
+<!-- wp:paragraph --><p>当社は、次に掲げる場合を除いて、あらかじめ本人の同意を得ることなく、第三者に個人情報を提供することはありません。ただし、個人情報保護法その他の法令で認められる場合を除きます。</p><!-- /wp:paragraph -->
+<!-- wp:list --><ul class="wp-block-list">
+<li>人の生命、身体または財産の保護のために必要がある場合であって、本人の同意を得ることが困難であるとき</li>
+<li>国の機関もしくは地方公共団体またはその委託を受けた者が法令の定める事務を遂行することに対して協力する必要がある場合であって、本人の同意を得ることにより当該事務の遂行に支障を及ぼすおそれがあるとき</li>
+</ul><!-- /wp:list -->
+
+<!-- wp:heading --><h2>第6条（個人情報の開示・訂正・削除）</h2><!-- /wp:heading -->
+<!-- wp:paragraph --><p>当社は、本人から個人情報の開示を求められたときは、本人に対し、遅滞なくこれを開示します。開示の結果、内容が事実でない場合、本人の求めに応じて速やかに訂正、追加または削除を行います。開示等のご希望は、下記のお問い合わせ窓口までご連絡ください。</p><!-- /wp:paragraph -->
+
+<!-- wp:heading --><h2>第7条（Cookie（クッキー）およびアクセス解析ツールについて）</h2><!-- /wp:heading -->
+<!-- wp:paragraph --><p>本サイトでは、サイトの利用状況を把握するためGoogle Analytics等のアクセス解析ツールを利用する場合があります。これらのツールはCookieを使用してデータを収集しますが、氏名、住所、メールアドレス、電話番号など個人を特定する情報は含まれません。この機能は、お使いのブラウザの設定によりCookieを無効にすることで収集を拒否することが可能です。</p><!-- /wp:paragraph -->
+
+<!-- wp:heading --><h2>第8条（プライバシーポリシーの変更）</h2><!-- /wp:heading -->
+<!-- wp:paragraph --><p>本ポリシーの内容は、法令その他本ポリシーに別段の定めのある事項を除いて、本人に通知することなく変更することができるものとします。当社が別途定める場合を除き、変更後のプライバシーポリシーは、本サイトに掲載したときから効力を生じるものとします。</p><!-- /wp:paragraph -->
+
+<!-- wp:heading --><h2>第9条（お問い合わせ窓口）</h2><!-- /wp:heading -->
+<!-- wp:paragraph --><p>本ポリシーに関するお問い合わせは、下記の窓口までお願いいたします。</p><!-- /wp:paragraph -->
+<!-- wp:paragraph --><p>株式会社サブサポ<br>〒453-0811 愛知県名古屋市中村区太閤通8丁目30 ARK中村公園5階D<br>TEL: 080-4346-8593<br>Email: iwatsuki@sub-sup.com</p><!-- /wp:paragraph -->
+
+<!-- wp:paragraph --><p class="has-text-align-right">制定日：2026年7月23日</p><!-- /wp:paragraph -->
+HTML;
+
+	$page_id = wp_insert_post(
+		array(
+			'post_type'    => 'page',
+			'post_name'    => 'privacy-policy',
+			'post_title'   => 'プライバシーポリシー',
+			'post_content' => $content,
+			'post_status'  => 'publish',
+		)
+	);
+
+	if ( $page_id && ! is_wp_error( $page_id ) ) {
+		subsupo_maybe_set_privacy_policy_page();
+	}
+}
+add_action( 'admin_init', 'subsupo_create_privacy_policy_page' );
