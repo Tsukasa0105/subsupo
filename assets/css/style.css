@@ -159,6 +159,14 @@ textarea.subsupo-cf7-input,
 	}
 }
 
+/* The loading spinner CF7 inserts next to the submit button takes up
+   layout space even at rest, which visually throws off the button's
+   centering. Hide it — the button's own disabled/opacity state during
+   submission is enough of a busy indicator. */
+.subsupo-cf7-wrap .wpcf7-spinner {
+	display: none !important;
+}
+
 .wpcf7-not-valid-tip {
 	display: block;
 	margin-top: 0.25rem;
