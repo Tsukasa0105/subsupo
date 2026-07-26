@@ -30,9 +30,9 @@ jobs:
             local tmpfile status
             tmpfile=$(mktemp)
             if [ -n "$data" ]; then
-              status=$(curl -sS -u "$AUTH" -X "$method" -H "Content-Type: application/json" -d "$data" -o "$tmpfile" -w '%{http_code}' "$url" || echo "curl_error")
+              status=$(curl -sS -u "$AUTH" -X "$method" -H "Content-Type: application/json" -H "User-Agent: Mozilla/5.0 (compatible; subsupo-wp-setup/1.0)" -d "$data" -o "$tmpfile" -w '%{http_code}' "$url" || echo "curl_error")
             else
-              status=$(curl -sS -u "$AUTH" -X "$method" -o "$tmpfile" -w '%{http_code}' "$url" || echo "curl_error")
+              status=$(curl -sS -u "$AUTH" -X "$method" -H "User-Agent: Mozilla/5.0 (compatible; subsupo-wp-setup/1.0)" -o "$tmpfile" -w '%{http_code}' "$url" || echo "curl_error")
             fi
             echo "  [$method $url] -> HTTP $status"
             if [ "$status" = "curl_error" ] || ! jq -e . "$tmpfile" >/dev/null 2>&1; then
