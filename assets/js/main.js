@@ -37,4 +37,11 @@
 			}
 		} );
 	} );
+
+	// Redirect to the thanks page once Contact Form 7 confirms the mail sent.
+	document.addEventListener( 'wpcf7mailsent', function () {
+		if ( window.subsupoContact && subsupoContact.thanksUrl ) {
+			location = subsupoContact.thanksUrl;
+		}
+	}, false );
 } )();

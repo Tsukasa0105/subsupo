@@ -89,3 +89,46 @@ HTML;
 	}
 }
 add_action( 'admin_init', 'subsupo_create_privacy_policy_page' );
+
+/**
+ * Creates the contact-form "thanks" page (slug: thanks) if it doesn't
+ * exist yet. page-thanks.php picks it up automatically via the template
+ * hierarchy. Runs on admin_init — provisioned locally, no external
+ * network call involved.
+ */
+function subsupo_create_thanks_page() {
+	if ( get_page_by_path( 'thanks' ) ) {
+		return;
+	}
+
+	$content = <<<'HTML'
+<!-- wp:paragraph --><p>お問い合わせいただき、誠にありがとうございます。<br>内容を確認のうえ、担当者よりご連絡させていただきます。</p><!-- /wp:paragraph -->
+
+<!-- wp:paragraph --><p>ご入力いただいたメールアドレス宛に自動返信メールをお送りしております。お手数ですが、メールが届いているかご確認ください。<br>※迷惑メールフォルダに振り分けられている場合がございますので、あわせてご確認をお願いいたします。</p><!-- /wp:paragraph -->
+
+<!-- wp:paragraph --><p>しばらく経っても自動返信メールが届かない場合は、メールアドレスのご入力間違い等の可能性がございますので、お手数ですが再度フォームよりお問い合わせください。</p><!-- /wp:paragraph -->
+HTML;
+
+	wp_insert_post(
+		array(
+			'post_type'    => 'page',
+			'post_name'    => 'thanks',
+			'post_title'   => 'お問い合わせありがとうございました',
+			'post_content' => $content,
+			'post_status'  => 'publish',
+		)
+	);
+}
+add_action( 'admin_init', 'subsupo_create_thanks_page' );
+
+/**
+ * URL of the contact-form thanks page, with a same-domain fallback to
+ * the homepage if it doesn't exist yet for some reason.
+ */
+function subsupo_thanks_page_url() {
+	$page = get_page_by_path( 'thanks' );
+	if ( $page instanceof WP_Post && 'publish' === $page->post_status ) {
+		return get_permalink( $page );
+	}
+	return home_url( '/' );
+}

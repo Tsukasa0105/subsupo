@@ -50,6 +50,11 @@ function subsupo_enqueue_assets() {
 
 	// Theme JS (mobile menu, FAQ accordion, contact form UX)
 	wp_enqueue_script( 'subsupo-main', get_template_directory_uri() . '/assets/js/main.js', array(), SUBSUPO_VERSION, true );
+	wp_localize_script(
+		'subsupo-main',
+		'subsupoContact',
+		array( 'thanksUrl' => subsupo_thanks_page_url() )
+	);
 }
 add_action( 'wp_enqueue_scripts', 'subsupo_enqueue_assets' );
 
