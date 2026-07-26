@@ -4,8 +4,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header();
-
-$contact_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['contact'] ) ) : '';
 ?>
 
 <section class="relative bg-white overflow-hidden">
@@ -363,69 +361,19 @@ $contact_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['c
 				<p class="text-gray-600">補助金に関するご相談、自社が対象になるかの確認など、<br class="hidden md:block">まずはお気軽にお問い合わせください。</p>
 			</div>
 
-			<?php if ( 'success' === $contact_status ) : ?>
-				<div class="mb-6 p-4 rounded-md bg-green-50 border border-green-200 text-secondary font-medium text-center">
-					お問い合わせを受け付けました。担当者よりご連絡いたします。
-				</div>
-			<?php elseif ( 'error' === $contact_status ) : ?>
-				<div class="mb-6 p-4 rounded-md bg-red-50 border border-red-200 text-red-600 font-medium text-center">
-					入力内容に誤りがあります。必須項目をご確認のうえ、再度送信してください。
-				</div>
-			<?php endif; ?>
-
-			<form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post" class="space-y-6">
-				<input type="hidden" name="action" value="subsupo_contact">
-				<?php wp_nonce_field( 'subsupo_contact', 'subsupo_contact_nonce' ); ?>
-
-				<div>
-					<label for="email" class="block text-sm font-medium text-gray-700 mb-1">メールアドレス <span class="text-red-500 text-xs ml-1 bg-red-50 px-2 py-0.5 rounded">必須</span></label>
-					<input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-20 bg-gray-50 outline-none transition">
-				</div>
-
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-					<div>
-						<label for="company_name" class="block text-sm font-medium text-gray-700 mb-1">企業名・団体名 <span class="text-red-500 text-xs ml-1 bg-red-50 px-2 py-0.5 rounded">必須</span></label>
-						<input type="text" id="company_name" name="company_name" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-20 bg-gray-50 outline-none transition">
-					</div>
-					<div>
-						<label for="company_name_kana" class="block text-sm font-medium text-gray-700 mb-1">企業名・団体名(かな) <span class="text-gray-500 text-xs ml-1">任意</span></label>
-						<input type="text" id="company_name_kana" name="company_name_kana" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-20 bg-gray-50 outline-none transition">
-					</div>
-				</div>
-
-				<div>
-					<label for="department" class="block text-sm font-medium text-gray-700 mb-1">部署/役職 <span class="text-gray-500 text-xs ml-1">任意</span></label>
-					<input type="text" id="department" name="department" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-20 bg-gray-50 outline-none transition">
-				</div>
-
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-					<div>
-						<label for="name" class="block text-sm font-medium text-gray-700 mb-1">氏名 <span class="text-red-500 text-xs ml-1 bg-red-50 px-2 py-0.5 rounded">必須</span></label>
-						<input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-20 bg-gray-50 outline-none transition">
-					</div>
-					<div>
-						<label for="name_kana" class="block text-sm font-medium text-gray-700 mb-1">氏名(かな) <span class="text-gray-500 text-xs ml-1">任意</span></label>
-						<input type="text" id="name_kana" name="name_kana" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-20 bg-gray-50 outline-none transition">
-					</div>
-				</div>
-
-				<div>
-					<label for="phone" class="block text-sm font-medium text-gray-700 mb-1">電話番号 <span class="text-red-500 text-xs ml-1 bg-red-50 px-2 py-0.5 rounded">必須</span></label>
-					<input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-20 bg-gray-50 outline-none transition">
-				</div>
-
-				<div>
-					<label for="message" class="block text-sm font-medium text-gray-700 mb-1">お問い合わせ内容 <span class="text-gray-500 text-xs ml-1">任意</span></label>
-					<textarea id="message" name="message" rows="4" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-20 bg-gray-50 outline-none transition" placeholder="例：工場の空調を最新のものに入れ替えたいのですが、使える補助金はありますか？"></textarea>
-				</div>
-
-				<div class="text-center pt-4">
-					<button type="submit" class="inline-flex justify-center items-center w-full md:w-auto px-12 py-4 border border-transparent text-lg font-bold rounded-md text-white bg-accent hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent shadow-lg transition duration-300 transform hover:-translate-y-1">
-						<i class="far fa-paper-plane mr-2"></i> 上記の内容で送信する
-					</button>
-					<p class="mt-4 text-xs text-gray-500">送信ボタンを押すことで、<a href="<?php echo esc_url( get_privacy_policy_url() ? get_privacy_policy_url() : '#' ); ?>" class="underline hover:text-gray-700">プライバシーポリシー</a>に同意したものとみなします。</p>
-				</div>
-			</form>
+			<div class="subsupo-cf7-wrap">
+				<?php
+				$subsupo_cf7_markup = subsupo_render_contact_form();
+				if ( $subsupo_cf7_markup ) {
+					echo $subsupo_cf7_markup; // phpcs:ignore -- CF7 shortcode output, already escaped by the plugin.
+				} else {
+					?>
+					<p class="text-center text-gray-500">フォームを準備中です。しばらくしてから再度お試しください。</p>
+					<?php
+				}
+				?>
+			</div>
+			<p class="mt-4 text-xs text-gray-500 text-center">送信ボタンを押すことで、<a href="<?php echo esc_url( subsupo_privacy_policy_url() ); ?>" class="underline hover:text-gray-700">プライバシーポリシー</a>に同意したものとみなします。</p>
 		</div>
 	</div>
 </section>

@@ -59,8 +59,8 @@ add_action( 'wp_enqueue_scripts', 'subsupo_enqueue_assets' );
 require get_template_directory() . '/inc/news-post-type.php';
 
 /**
- * Template helper functions (anchor links, badges, contact form handler)
+ * Template helper functions (anchor links, badges)
  */
 require get_template_directory() . '/inc/template-tags.php';
-require get_template_directory() . '/inc/contact-form.php';
 require get_template_directory() . '/inc/setup.php';
+require get_template_directory() . '/inc/cf7-form.php';

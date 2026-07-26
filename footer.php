@@ -38,7 +38,7 @@
 		</div>
 
 		<div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-			<a href="<?php echo esc_url( get_privacy_policy_url() ? get_privacy_policy_url() : '#' ); ?>" class="hover:text-gray-300 transition mb-2 md:mb-0">プライバシーポリシー</a>
+			<a href="<?php echo esc_url( subsupo_privacy_policy_url() ); ?>" class="hover:text-gray-300 transition mb-2 md:mb-0">プライバシーポリシー</a>
 			<p>&copy; Sub-sup Co., Ltd. All Rights Reserved.</p>
 		</div>
 	</div>
