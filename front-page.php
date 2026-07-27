@@ -38,7 +38,7 @@ get_header();
 
 <section class="py-16 bg-white bg-pattern">
 	<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-		<h2 class="text-3xl font-bold mb-8">こんな<span class="text-primary border-b-4 border-secondary pb-1">お悩み</span>、<br class="sm:hidden">ありませんか？</h2>
+		<h2 class="text-3xl font-bold mb-8 leading-relaxed sm:leading-tight">こんな<span class="text-primary border-b-4 border-secondary pb-1">お悩み</span>、<br class="sm:hidden">ありませんか？</h2>
 
 		<div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 text-left">
 			<ul class="space-y-6">
