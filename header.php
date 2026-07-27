@@ -14,7 +14,7 @@
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="flex justify-between items-center h-20">
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex-shrink-0">
-				<span class="text-2xl font-bold text-primary tracking-wider">株式会社サブサポ</span>
+				<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/subsupo-logo.png' ); ?>" alt="株式会社サブサポ" class="h-10 md:h-12 w-auto">
 			</a>
 
 			<nav class="hidden lg:flex space-x-6 items-center">

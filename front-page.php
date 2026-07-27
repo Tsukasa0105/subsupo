@@ -11,9 +11,6 @@ get_header();
 		<div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32 pt-10 sm:pt-16 lg:pt-20">
 			<div class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
 				<div class="sm:text-center lg:text-left">
-					<span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-primary text-sm font-bold mb-4 border border-blue-200">
-						相談実績500件以上！採択率90%超
-					</span>
 					<h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl leading-tight">
 						<span class="block mb-2">補助金申請のプロが</span>
 						<span class="block text-primary">省エネ補助金申請を伴走支援</span>
@@ -34,7 +31,7 @@ get_header();
 		</div>
 	</div>
 	<div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-		<img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full opacity-90" src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="工場設備">
+		<img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full opacity-90" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/hero-fv.jpg' ); ?>" alt="株式会社サブサポ">
 		<div class="absolute inset-0 bg-gradient-to-r from-white via-white/50 to-transparent lg:block hidden"></div>
 	</div>
 </section>
@@ -86,6 +83,7 @@ get_header();
 		<div class="text-center mb-12">
 			<h2 class="text-3xl font-bold text-gray-900">補助金活用の<span class="text-primary">大きなメリット</span></h2>
 			<p class="mt-4 text-lg text-gray-600">補助金を活用することで、導入設備でかかる補助対象経費の最大2/3の補助が受けられます。</p>
+			<p class="mt-2 text-base font-bold text-secondary">～補助金が1/2の場合～</p>
 		</div>
 
 		<div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-4 lg:gap-12">
@@ -102,10 +100,16 @@ get_header();
 				<i class="fas fa-chevron-down text-4xl text-secondary"></i>
 			</div>
 
-			<div class="w-full md:w-5/12 bg-white rounded-xl shadow-lg p-4 border-t-8 border-secondary relative transform scale-105">
+			<div class="w-full md:w-5/12 bg-white rounded-xl shadow-lg p-4 border-t-8 border-secondary relative">
 				<div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-secondary text-white font-bold py-1 px-6 rounded-full shadow">導入後</div>
 				<img class="w-full h-auto rounded-lg mt-4" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/merit-after-with-subsidy.png' ); ?>" alt="補助金を活用する場合（補助率1/2）：実質負担額4,700万円">
 			</div>
+		</div>
+
+		<div class="mt-10 text-center">
+			<span class="inline-block bg-secondary text-white text-xl sm:text-2xl font-bold px-8 py-4 rounded-full shadow-md">
+				補助金を活用することで3,000万円お得に！
+			</span>
 		</div>
 	</div>
 </section>
@@ -163,40 +167,40 @@ get_header();
 	</div>
 </section>
 
-<section id="equipment" class="py-16 bg-gray-800 text-white">
+<section id="equipment" class="py-16 bg-green-50 text-gray-900">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="text-center mb-12">
 			<h2 class="text-3xl font-bold">補助対象となる主な設備</h2>
-			<p class="mt-4 text-gray-400">以下のような設備の更新で補助金が活用できます。<br>※上記以外も対象になる場合がございます。まずはお気軽にご相談下さい。</p>
+			<p class="mt-4 text-gray-600">以下のような設備の更新で補助金が活用できます。<br>※上記以外も対象になる場合がございます。まずはお気軽にご相談下さい。</p>
 		</div>
 
 		<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-12">
-			<div class="bg-gray-700 p-6 rounded-lg text-center border border-gray-600 hover:border-primary transition">
+			<div class="bg-white p-6 rounded-lg text-center border border-green-200 hover:border-primary shadow-sm transition">
 				<i class="fas fa-wind text-4xl text-primary mb-3"></i>
-				<h4 class="font-bold">空調設備</h4>
+				<h4 class="font-bold text-gray-800">空調設備</h4>
 			</div>
-			<div class="bg-gray-700 p-6 rounded-lg text-center border border-gray-600 hover:border-primary transition">
+			<div class="bg-white p-6 rounded-lg text-center border border-green-200 hover:border-primary shadow-sm transition">
 				<i class="fas fa-hot-tub text-4xl text-red-400 mb-3"></i>
-				<h4 class="font-bold">給湯設備</h4>
+				<h4 class="font-bold text-gray-800">給湯設備</h4>
 			</div>
-			<div class="bg-gray-700 p-6 rounded-lg text-center border border-gray-600 hover:border-primary transition">
-				<i class="fas fa-cogs text-4xl text-gray-300 mb-3"></i>
-				<h4 class="font-bold">生産設備</h4>
+			<div class="bg-white p-6 rounded-lg text-center border border-green-200 hover:border-primary shadow-sm transition">
+				<i class="fas fa-cogs text-4xl text-gray-500 mb-3"></i>
+				<h4 class="font-bold text-gray-800">生産設備</h4>
 			</div>
-			<div class="bg-gray-700 p-6 rounded-lg text-center border border-gray-600 hover:border-primary transition">
-				<i class="fas fa-tools text-4xl text-blue-300 mb-3"></i>
-				<h4 class="font-bold">工作機械</h4>
+			<div class="bg-white p-6 rounded-lg text-center border border-green-200 hover:border-primary shadow-sm transition">
+				<i class="fas fa-tools text-4xl text-blue-400 mb-3"></i>
+				<h4 class="font-bold text-gray-800">工作機械</h4>
 			</div>
 		</div>
 
-		<div class="bg-gray-900 rounded-lg p-8 border border-gray-700">
-			<h3 class="text-xl font-bold mb-4 text-center border-b border-gray-700 pb-4"><i class="fas fa-file-invoice-dollar mr-2 text-secondary"></i> 主な取り扱い補助事業</h3>
+		<div class="bg-white rounded-lg p-8 border border-green-200 shadow-sm">
+			<h3 class="text-xl font-bold mb-4 text-center border-b border-green-100 pb-4"><i class="fas fa-file-invoice-dollar mr-2 text-secondary"></i> 主な取り扱い補助事業</h3>
 			<ul class="grid md:grid-cols-3 gap-4 text-center">
-				<li class="bg-gray-800 py-3 px-4 rounded">経産省<br>省エネ・非化石転換補助金</li>
-				<li class="bg-gray-800 py-3 px-4 rounded">環境省<br>民間建築物等における省CO2改修支援事業</li>
-				<li class="bg-gray-800 py-3 px-4 rounded">環境省<br>テナントビルの省CO2改修支援事業</li>
+				<li class="bg-green-50 text-gray-800 py-3 px-4 rounded">経産省<br>省エネ・非化石転換補助金</li>
+				<li class="bg-green-50 text-gray-800 py-3 px-4 rounded">環境省<br>民間建築物等における省CO2改修支援事業</li>
+				<li class="bg-green-50 text-gray-800 py-3 px-4 rounded">環境省<br>テナントビルの省CO2改修支援事業</li>
 			</ul>
-			<p class="text-center text-gray-400 text-sm mt-6">その他にも様々な省エネ補助金がございます。申請者様にあった最適な補助金のご提案をさせて頂きます。</p>
+			<p class="text-center text-gray-600 text-sm mt-6">その他にも様々な省エネ補助金がございます。申請者様にあった最適な補助金のご提案をさせて頂きます。</p>
 		</div>
 	</div>
 </section>
