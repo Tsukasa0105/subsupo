@@ -38,7 +38,7 @@ get_header();
 
 <section class="py-16 bg-white bg-pattern">
 	<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-		<h2 class="text-3xl font-bold mb-8">こんな<span class="text-primary border-b-4 border-secondary pb-1">お悩み</span>、ありませんか？</h2>
+		<h2 class="text-3xl font-bold mb-8">こんな<span class="text-primary border-b-4 border-secondary pb-1">お悩み</span>、<br class="sm:hidden">ありませんか？</h2>
 
 		<div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 text-left">
 			<ul class="space-y-6">
@@ -72,7 +72,7 @@ get_header();
 		<div class="mt-8">
 			<div class="triangle-down"></div>
 			<div class="bg-secondary text-white p-6 rounded-lg shadow-md mt-2">
-				<h3 class="text-2xl font-bold">その悩み、サブサポの<br class="sm:hidden"><span class="text-yellow-300 text-2xl sm:text-3xl mx-2">【補助金活用サポート】</span>で解決できます</h3>
+				<h3 class="text-2xl font-bold">その悩み、サブサポの<br class="sm:hidden"><span class="text-yellow-300 text-2xl sm:text-3xl mx-2">【補助金活用サポート】</span><br class="sm:hidden">で解決できます</h3>
 			</div>
 		</div>
 	</div>
@@ -108,7 +108,7 @@ get_header();
 
 		<div class="mt-10 text-center">
 			<span class="inline-block bg-secondary text-white text-xl sm:text-2xl font-bold px-8 py-4 rounded-full shadow-md">
-				補助金を活用することで3,000万円お得に！
+				補助金を活用することで<br class="sm:hidden">3,000万円お得に！
 			</span>
 		</div>
 	</div>
@@ -117,7 +117,7 @@ get_header();
 <section id="reasons" class="py-16 bg-white">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="text-center mb-16">
-			<h2 class="text-3xl font-bold text-gray-900">サブサポが選ばれる<span class="text-primary text-4xl">4</span>つの理由</h2>
+			<h2 class="text-3xl font-bold text-gray-900">サブサポが選ばれる<br class="sm:hidden"><span class="text-primary text-4xl">4</span>つの理由</h2>
 			<div class="w-24 h-1 bg-secondary mx-auto mt-4"></div>
 		</div>
 
