@@ -63,20 +63,6 @@ function subsupo_news_seed_items() {
 			'term'    => 'お知らせ',
 		),
 		array(
-			'slug'    => 'koubo-shimekiri-0427',
-			'title'   => '経産省 省エネ・非化石転換補助金の公募締め切りました。',
-			'content' => '経産省 省エネ・非化石転換補助金の公募締め切りました。次回の2次公募は6月上旬より公募開始予定となります。',
-			'date'    => '2026-04-27 10:00:00',
-			'term'    => '補助金情報',
-		),
-		array(
-			'slug'    => 'koubo-kaishi-0330',
-			'title'   => '経産省 省エネ・非化石転換補助金の公募開始しました。',
-			'content' => '経産省 省エネ・非化石転換補助金の公募開始しました。',
-			'date'    => '2026-03-30 10:00:00',
-			'term'    => '補助金情報',
-		),
-		array(
 			'slug'    => 'setsuritsu',
 			'title'   => '設立',
 			'content' => '設立',
@@ -85,6 +71,25 @@ function subsupo_news_seed_items() {
 		),
 	);
 }
+
+/**
+ * Slugs of news posts that were retired from the copy deck. Trashed (not
+ * force-deleted) on admin_init if they exist, so this is recoverable from
+ * the Trash if it turns out to be a mistake.
+ */
+function subsupo_retired_news_slugs() {
+	return array( 'koubo-shimekiri-0427', 'koubo-kaishi-0330' );
+}
+
+function subsupo_remove_retired_news_posts() {
+	foreach ( subsupo_retired_news_slugs() as $slug ) {
+		$post = get_page_by_path( $slug, OBJECT, 'news' );
+		if ( $post instanceof WP_Post && 'trash' !== $post->post_status ) {
+			wp_delete_post( $post->ID, false );
+		}
+	}
+}
+add_action( 'admin_init', 'subsupo_remove_retired_news_posts' );
 
 function subsupo_get_or_create_news_term( $name ) {
 	$term = get_term_by( 'name', $name, 'news_category' );
